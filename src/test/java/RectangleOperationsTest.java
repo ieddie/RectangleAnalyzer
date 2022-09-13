@@ -1,7 +1,4 @@
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.nuvalence.RA.NRectangle;
 import org.junit.jupiter.api.Test;
@@ -111,5 +108,4 @@ public class RectangleOperationsTest {
 
         assertTrue(first.isAdjacentTo(second));
     }
-
 }
