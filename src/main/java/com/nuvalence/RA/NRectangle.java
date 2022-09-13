@@ -95,7 +95,39 @@ public class NRectangle {
         return false;
     }
 
-    boolean isAdjacentTo(NRectangle other) {
+    public boolean isAdjacentTo(NRectangle other) {
+
+        // if rectangles are adjacent, they are not intersecting or one does not contain another
+        if (this.doesContain(other) || !this.doesIntersectWith(other).isEmpty()) {
+            return false;
+        }
+
+        // each of the 4 sides of this rectangle can only be adjacent with 1 side of the other rectangle, respectively
+
+        // adjacent on along Y axis on the left
+        if (this.getBottomLeft().getX() == other.getTopRight().getX() ||
+                this.getTopRight().getX() == other.getBottomLeft().getX()) {
+            long maxLowerY = Math.max(this.getBottomLeft().getY(), other.getBottomLeft().getY());
+            long minUpperY = Math.min(this.getTopRight().getY(), other.getTopRight().getY());
+
+            if (maxLowerY <= minUpperY) {
+                // rectangles are adjacent along y axis
+                return true;
+            }
+        }
+
+        // adjacent on along Y axis on the right
+        if (this.getBottomLeft().getY() == other.getTopRight().getY() ||
+                this.getTopRight().getY() == other.getBottomLeft().getY()) {
+            long maxLeftX = Math.max(this.getBottomLeft().getX(), other.getBottomLeft().getX());
+            long minRightX = Math.min(this.getTopRight().getX(), other.getTopRight().getX());
+
+            if (maxLeftX <= minRightX) {
+                // rectangles are adjacent along X axis
+                return true;
+            }
+        }
+
         return false;
     }
 }

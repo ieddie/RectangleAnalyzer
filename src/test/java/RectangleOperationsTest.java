@@ -80,4 +80,36 @@ public class RectangleOperationsTest {
         fail("expected IllegalArgumentException, but no exception was thrown.");
     }
 
+    @Test
+    public void adjacentTestNegative() {
+        NRectangle first = new NRectangle(1, 1, 2, 4);
+        NRectangle second = new NRectangle(4, 1, 2, 1);
+
+        assertFalse(first.isAdjacentTo(second));
+    }
+
+    @Test
+    public void adjacentTestSubLine() {
+        NRectangle first = new NRectangle(1, 1, 2, 4);
+        NRectangle second = new NRectangle(3, 2, 2, 1);
+
+        assertTrue(first.isAdjacentTo(second));
+    }
+
+    @Test
+    public void adjacentTestProper() {
+        NRectangle first = new NRectangle(1, 1, 2, 4);
+        NRectangle second = new NRectangle(3, 1, 2, 4);
+
+        assertTrue(first.isAdjacentTo(second));
+    }
+
+    @Test
+    public void adjacentTestPartial() {
+        NRectangle first = new NRectangle(1, 1, 2, 4);
+        NRectangle second = new NRectangle(3, 2, 2, 5);
+
+        assertTrue(first.isAdjacentTo(second));
+    }
+
 }
